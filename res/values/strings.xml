@@ -7,9 +7,12 @@
     <string name="title">Flip Phone</string>
     <string name="button_start">Start</string>
     <string name="button_stop">Stop</string>
-    <string name="title_activity_read">Messungen</string>
+    <string name="button_finish">Finish</string>
+    <string name="title_activity_read">Meassures</string>
+    <string name="title_result">Result</string>
     <string name="text_roll">Roll</string>
     <string name="text_pitch">Pitch</string>
     <string name="text_yaw">Yaw</string>
+    <string name="title_activity_result">ResultActivity</string>
 
 </resources>
