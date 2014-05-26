@@ -23,7 +23,8 @@
         android:background="@drawable/round_button"
         android:gravity="center_vertical|center_horizontal"
         android:text="@string/button_stop"
-        android:textColor="#fff" />
+        android:textColor="#fff" 
+        android:textSize="18pt"	/>
 
     <TextView
         android:id="@+id/textView2"
