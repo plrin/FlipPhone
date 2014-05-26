@@ -1,4 +1,5 @@
 FlipPhone
 =========
 
-Android App (for Version 4.0 and higher) for Mobile Systems
+
+[Concept](https://github.com/plrin/FlipPhone/blob/master/concept.pdf)
