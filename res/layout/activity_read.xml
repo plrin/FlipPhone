@@ -11,7 +11,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="22dp"
         android:text="@string/title_activity_read"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="36sp" />
     
     <Button
         android:id="@+id/button1"
@@ -24,17 +25,17 @@
         android:gravity="center_vertical|center_horizontal"
         android:text="@string/button_stop"
         android:textColor="#fff" 
-        android:textSize="18pt"	/>
+        android:textSize="36sp"	/>
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView4"
         android:layout_below="@+id/textView1"
-        android:layout_marginTop="77dp"
-        android:layout_toLeftOf="@+id/button1"
+        android:layout_marginTop="45dp"
         android:text="@string/text_roll"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/textView3"
@@ -42,17 +43,20 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView2"
         android:layout_below="@+id/textView2"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="35dp"
         android:text="@string/text_pitch"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
+        android:layout_below="@+id/textView3"
+        android:layout_marginTop="34dp"
         android:layout_toLeftOf="@+id/button1"
         android:text="@string/text_yaw"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="24sp" />
 
 </RelativeLayout>
