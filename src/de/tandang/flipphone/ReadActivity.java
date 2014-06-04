@@ -13,15 +13,21 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
-
-
 public class ReadActivity extends Activity {
+	
 	private static SensorManager sensorManager;
 	private Sensor sensor;
+	final static String EXTRA_ROLL = "roll";
+	final static String EXTRA_PITCH = "pitch";
+	final static String EXTRA_YAW = "yaw";
+	private EditText rollText;
+	private EditText pitchText;
+	private EditText yawText;
 	
 	
 
@@ -32,17 +38,15 @@ public class ReadActivity extends Activity {
 		
 		Button button = (Button) findViewById(R.id.button1);
 		button.setOnClickListener(new OnClickListener() {
-
 			@Override
 			public void onClick(View v) {
-				stopRead();
+				stopFirstAcitivity();
 				switchActivity();
-				
 			}
-			
-			
 		});
 		
+		
+		// sensor definieren
 		sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 		sensor = sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
 		if (sensor != null) {
@@ -55,9 +59,16 @@ public class ReadActivity extends Activity {
 		          Toast.LENGTH_LONG).show();
 		      finish();
 		    }
+		
+		// hole werte aus view und speichere sie im edittext
+		rollText = (EditText) findViewById(R.id.resView2);
+		pitchText = (EditText) findViewById(R.id.resView3);
+		yawText = (EditText) findViewById(R.id.resView4);
 
 	}
 	
+	
+	// sensor listener definieren
 	private SensorEventListener mySensorEventListener = new SensorEventListener() {
 
 	    @Override
@@ -68,22 +79,19 @@ public class ReadActivity extends Activity {
 	    public void onSensorChanged(SensorEvent event) {
 	    	
 	    	//Definiere TextFelder
-	    	TextView x = (TextView) findViewById(R.id.textView5);
-	    	TextView y = (TextView) findViewById(R.id.textView6);
-	    	TextView z = (TextView) findViewById(R.id.textView7);
-	    	//Definiere variablen für Gyroskop Ausgabe
+	    	TextView x = (TextView) findViewById(R.id.resView2);
+	    	TextView y = (TextView) findViewById(R.id.resView3);
+	    	TextView z = (TextView) findViewById(R.id.resView4);
+	    	//Definiere variablen fï¿½r Gyroskop Ausgabe
 	    	float axisX = event.values[0];
 	        float axisY = event.values[1];
 	        float axisZ = event.values[2];
-	        //Ändere TextFelder
+	        //ï¿½ndere TextFelder
 	        x.setText("" + axisX );
 	        y.setText("" + axisY );
 	        z.setText("" + axisZ ); 
 	    }
 	  };
-	
-	
-	
 	
 	
 	
@@ -95,15 +103,19 @@ public class ReadActivity extends Activity {
 		return true;
 	}
 
-	
-	public void stopRead() {
-		// stop the reading and switch to next screen with number of rotations
-		
-	}
-	
-	public void switchActivity() {
+	public void stopFirstAcitivity() {
 		finish();
+	}
+
+	//wechselt und Ã¼bergibt werte zur result activity 
+	public void switchActivity() {
+		String rollValue = rollText.getText().toString();
+		String pitchValue = pitchText.getText().toString();
+		String yawValue = yawText.getText().toString();
 		Intent intent = new Intent(this, ResultActivity.class);
+		intent.putExtra(EXTRA_PITCH, rollValue);
+		intent.putExtra(EXTRA_ROLL, pitchValue);
+		intent.putExtra(EXTRA_YAW, yawValue);
 		startActivity(intent);
 	}
 
