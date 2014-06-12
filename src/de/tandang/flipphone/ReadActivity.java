@@ -48,7 +48,7 @@ public class ReadActivity extends Activity {
 		
 		// sensor definieren
 		sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-		sensor = sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
+		sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
 		if (sensor != null) {
 		      sensorManager.registerListener(mySensorEventListener, sensor,
 		          SensorManager.SENSOR_DELAY_NORMAL);
@@ -60,11 +60,8 @@ public class ReadActivity extends Activity {
 		      finish();
 		    }
 		
-		// hole werte aus view und speichere sie im edittext
-		rollText = (EditText) findViewById(R.id.resView2);
-		pitchText = (EditText) findViewById(R.id.resView3);
-		yawText = (EditText) findViewById(R.id.resView4);
-
+		
+		
 	}
 	
 	
@@ -109,6 +106,12 @@ public class ReadActivity extends Activity {
 
 	//wechselt und übergibt werte zur result activity 
 	public void switchActivity() {
+		
+		// hole werte aus view und speichere sie im edittext um in result zu uebergeben
+				rollText = (EditText) findViewById(R.id.resView2);
+				pitchText = (EditText) findViewById(R.id.resView3);
+				yawText = (EditText) findViewById(R.id.resView4);
+		
 		String rollValue = rollText.getText().toString();
 		String pitchValue = pitchText.getText().toString();
 		String yawValue = yawText.getText().toString();
@@ -117,6 +120,10 @@ public class ReadActivity extends Activity {
 		intent.putExtra(EXTRA_ROLL, pitchValue);
 		intent.putExtra(EXTRA_YAW, yawValue);
 		startActivity(intent);
+	}
+	
+	public void count() {
+		
 	}
 
 }

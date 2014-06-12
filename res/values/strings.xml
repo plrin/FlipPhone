@@ -15,5 +15,6 @@
     <string name="text_yaw">Yaw</string>
     <string name="title_activity_result">ResultActivity</string>
     <string name="empty_text">empty</string>
+    <string name="title_activity_test">TestActivity</string>
 
 </resources>

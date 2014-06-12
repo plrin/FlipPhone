@@ -35,11 +35,9 @@ public class MainActivity extends Activity {
 
 	public void startReadActivity() {
 		// switch to the measure window
-		Intent intent = new Intent(this, ReadActivity.class);
-		startActivity(intent);
+		Intent mainIntent = new Intent(this, ReadActivity.class);
+		startActivity(mainIntent);
 
 	}
-
-
 
 }

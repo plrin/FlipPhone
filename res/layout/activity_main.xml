@@ -6,38 +6,37 @@
     tools:context="de.tandang.flipphone.MainActivity"
     tools:ignore="MergeRootFrame" >
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="150sp"
-        android:layout_height="150sp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="42dp"
-        android:background="@drawable/round_button"
-        android:gravity="center_vertical|center_horizontal"
-        android:text="@string/button_start"
-        android:textColor="#fff" 
-        android:textSize="36sp"	/>
-
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="82dp"
+        android:layout_marginTop="27dp"
         android:text="@string/title"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="36sp" />
 
     <ImageView
         android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150sp"
+        android:layout_height="150sp"
         android:layout_below="@+id/textView1"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
-        android:src="@drawable/logo"
-         />
+        android:layout_marginTop="21dp"
+        android:src="@drawable/logo_new" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="150sp"
+        android:layout_height="150sp"
+        android:layout_alignLeft="@+id/imageView1"
+        android:layout_below="@+id/imageView1"
+        android:layout_marginTop="34dp"
+        android:background="@drawable/round_button"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="@string/button_start"
+        android:textColor="#fff"
+        android:textSize="36sp" />
 
 </RelativeLayout>

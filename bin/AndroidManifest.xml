@@ -30,6 +30,10 @@
             android:name="de.tandang.flipphone.ResultActivity"
             android:label="@string/title_activity_result" >
         </activity>
+        <activity
+            android:name="de.tandang.flipphone.TestActivity"
+            android:label="@string/title_activity_test" >
+        </activity>
     </application>
 
 </manifest>
