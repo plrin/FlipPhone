@@ -28,7 +28,9 @@ public class ReadActivity extends Activity {
 	private EditText rollText;
 	private EditText pitchText;
 	private EditText yawText;
-	
+	private TextView x;
+	private TextView y;
+	private TextView z;
 	
 
 	@Override
@@ -50,7 +52,7 @@ public class ReadActivity extends Activity {
 		sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 		sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
 		if (sensor != null) {
-		      sensorManager.registerListener(mySensorEventListener, sensor,
+			sensorManager.registerListener(mySensorEventListener, sensor,
 		          SensorManager.SENSOR_DELAY_NORMAL);
 		      Log.i("Compass MainActivity", "Registerered for ORIENTATION Sensor");
 		    } else {
@@ -58,38 +60,8 @@ public class ReadActivity extends Activity {
 		      Toast.makeText(this, "ORIENTATION Sensor not found",
 		          Toast.LENGTH_LONG).show();
 		      finish();
-		    }
-		
-		
-		
+		    }	
 	}
-	
-	
-	// sensor listener definieren
-	private SensorEventListener mySensorEventListener = new SensorEventListener() {
-
-	    @Override
-	    public void onAccuracyChanged(Sensor sensor, int accuracy) {
-	    }
-
-	    @Override
-	    public void onSensorChanged(SensorEvent event) {
-	    	
-	    	//Definiere TextFelder
-	    	TextView x = (TextView) findViewById(R.id.resView2);
-	    	TextView y = (TextView) findViewById(R.id.resView3);
-	    	TextView z = (TextView) findViewById(R.id.resView4);
-	    	//Definiere variablen f�r Gyroskop Ausgabe
-	    	float axisX = event.values[0];
-	        float axisY = event.values[1];
-	        float axisZ = event.values[2];
-	        //�ndere TextFelder
-	        x.setText("" + axisX );
-	        y.setText("" + axisY );
-	        z.setText("" + axisZ ); 
-	    }
-	  };
-	
 	
 	
 	@Override
@@ -99,6 +71,36 @@ public class ReadActivity extends Activity {
 		getMenuInflater().inflate(R.menu.read, menu);
 		return true;
 	}
+	
+	// sensor listener definieren
+	private SensorEventListener mySensorEventListener = new SensorEventListener() {
+		
+		@Override
+		public void onAccuracyChanged(Sensor sensor, int accuracy) {
+			
+		}
+		
+		@Override
+		public void onSensorChanged(SensorEvent event) {
+			
+		    //Definiere TextFelder
+		   	x = (TextView) findViewById(R.id.resView2);
+		   	y = (TextView) findViewById(R.id.resView3);
+		    z = (TextView) findViewById(R.id.resView4);
+		    //Definiere variablen f�r Gyroskop Ausgabe
+		    float axisX = event.values[0];
+		    float axisY = event.values[1];
+		    float axisZ = event.values[2];
+		    //aendere TextFelder
+		    x.setText("" + axisX );
+		    y.setText("" + axisY );
+		    z.setText("" + axisZ ); 
+		    
+		}
+	};
+	
+	
+	// eigene methoden
 
 	public void stopFirstAcitivity() {
 		finish();
@@ -107,14 +109,9 @@ public class ReadActivity extends Activity {
 	//wechselt und übergibt werte zur result activity 
 	public void switchActivity() {
 		
-		// hole werte aus view und speichere sie im edittext um in result zu uebergeben
-				rollText = (EditText) findViewById(R.id.resView2);
-				pitchText = (EditText) findViewById(R.id.resView3);
-				yawText = (EditText) findViewById(R.id.resView4);
-		
-		String rollValue = rollText.getText().toString();
-		String pitchValue = pitchText.getText().toString();
-		String yawValue = yawText.getText().toString();
+		String rollValue = x.getText().toString();
+		String pitchValue = y.getText().toString();
+		String yawValue = z.getText().toString();
 		Intent intent = new Intent(this, ResultActivity.class);
 		intent.putExtra(EXTRA_PITCH, rollValue);
 		intent.putExtra(EXTRA_ROLL, pitchValue);
