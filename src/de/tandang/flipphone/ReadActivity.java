@@ -31,6 +31,10 @@ public class ReadActivity extends Activity {
 	private TextView x;
 	private TextView y;
 	private TextView z;
+	private TextView rotations;
+	private int numberOfRotations = 0;
+//	private int numberOfRotationsY = 0;
+//	private int numberOfRotationsZ = 0;
 	
 
 	@Override
@@ -50,10 +54,10 @@ public class ReadActivity extends Activity {
 		
 		// sensor definieren
 		sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-		sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
+		sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
 		if (sensor != null) {
 			sensorManager.registerListener(mySensorEventListener, sensor,
-		          SensorManager.SENSOR_DELAY_NORMAL);
+		          SensorManager.SENSOR_DELAY_FASTEST);
 		      Log.i("Compass MainActivity", "Registerered for ORIENTATION Sensor");
 		    } else {
 		      Log.e("Compass MainActivity", "Registerered for ORIENTATION Sensor");
@@ -72,6 +76,7 @@ public class ReadActivity extends Activity {
 		return true;
 	}
 	
+	boolean rotationCondition = false;
 	// sensor listener definieren
 	private SensorEventListener mySensorEventListener = new SensorEventListener() {
 		
@@ -87,14 +92,32 @@ public class ReadActivity extends Activity {
 		   	x = (TextView) findViewById(R.id.resView2);
 		   	y = (TextView) findViewById(R.id.resView3);
 		    z = (TextView) findViewById(R.id.resView4);
+		    
+		    rotations = (TextView) findViewById(R.id.textView5);
+
 		    //Definiere variablen f�r Gyroskop Ausgabe
 		    float axisX = event.values[0];
 		    float axisY = event.values[1];
 		    float axisZ = event.values[2];
 		    //aendere TextFelder
-		    x.setText("" + axisX );
+		    
+		    
+		    
+		    if ((axisY > 0) && rotationCondition == false){
+		    	rotationCondition = true;
+		    	
+		    }
+		    if ((axisY < 0) && rotationCondition == true){
+		    	numberOfRotations += 1;
+		    	rotationCondition = false;
+		    
+		    }
+		    
+		    x.setText("" + axisX);
 		    y.setText("" + axisY );
-		    z.setText("" + axisZ ); 
+		    z.setText("" + axisZ );
+		    rotations.setText("" + numberOfRotations);
+		    
 		    
 		}
 	};
