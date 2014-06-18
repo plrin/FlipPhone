@@ -31,10 +31,12 @@ public class ReadActivity extends Activity {
 	private TextView x;
 	private TextView y;
 	private TextView z;
-	private TextView rotations;
-	private int numberOfRotations = 0;
-//	private int numberOfRotationsY = 0;
-//	private int numberOfRotationsZ = 0;
+	private TextView rotationsX;
+	private TextView rotationsY;
+	private TextView rotationsZ;
+	private int numberOfRotationsX = 0;
+	private int numberOfRotationsY = 0;
+	private int numberOfRotationsZ = 0;
 	
 
 	@Override
@@ -76,7 +78,9 @@ public class ReadActivity extends Activity {
 		return true;
 	}
 	
-	boolean rotationCondition = false;
+	boolean rotationConditionX = false;
+	boolean rotationConditionY = false;
+	boolean rotationConditionZ = false;
 	// sensor listener definieren
 	private SensorEventListener mySensorEventListener = new SensorEventListener() {
 		
@@ -93,7 +97,9 @@ public class ReadActivity extends Activity {
 		   	y = (TextView) findViewById(R.id.resView3);
 		    z = (TextView) findViewById(R.id.resView4);
 		    
-		    rotations = (TextView) findViewById(R.id.textView5);
+		    rotationsX = (TextView) findViewById(R.id.textView5);
+		    rotationsY = (TextView) findViewById(R.id.textView6);
+		    rotationsZ = (TextView) findViewById(R.id.textView7);
 
 		    //Definiere variablen f�r Gyroskop Ausgabe
 		    float axisX = event.values[0];
@@ -101,23 +107,43 @@ public class ReadActivity extends Activity {
 		    float axisZ = event.values[2];
 		    //aendere TextFelder
 		    
-		    
-		    
-		    if ((axisY > 0) && rotationCondition == false){
-		    	rotationCondition = true;
+		    // X Achsen Zähler
+		    if ((axisX > 0) && rotationConditionX == false){
+		    	rotationConditionX = true;
 		    	
 		    }
-		    if ((axisY < 0) && rotationCondition == true){
-		    	numberOfRotations += 1;
-		    	rotationCondition = false;
+		    if ((axisX > 180) && rotationConditionX == true){
+		    	numberOfRotationsX += 1;
+		    	rotationConditionX = false;
+		    
+		    }
+		    // Y Achsen Zähler
+		    if ((axisY > 0) && rotationConditionY == false){
+		    	rotationConditionY = true;
+		    	
+		    }
+		    if ((axisY < 0) && rotationConditionY == true){
+		    	numberOfRotationsY += 1;
+		    	rotationConditionY = false;
+		    
+		    }
+		    // Z Achsen Zähler
+		    if ((axisZ > 0) && rotationConditionZ == false){
+		    	rotationConditionZ = true;
+		    	
+		    }
+		    if ((axisZ < 0) && rotationConditionZ == true){
+		    	numberOfRotationsZ += 1;
+		    	rotationConditionZ = false;
 		    
 		    }
 		    
 		    x.setText("" + axisX);
 		    y.setText("" + axisY );
 		    z.setText("" + axisZ );
-		    rotations.setText("" + numberOfRotations);
-		    
+		    rotationsX.setText("" + numberOfRotationsX);
+		    rotationsY.setText("" + numberOfRotationsY);
+		    rotationsZ.setText("" + numberOfRotationsZ);
 		    
 		}
 	};
