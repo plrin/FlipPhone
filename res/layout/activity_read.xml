@@ -59,6 +59,8 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textSize="24sp" />
     
+    <!--  hier waren die textviews fuer die sensordaten
+    
     <TextView
         android:id="@+id/resView2"
         android:layout_width="wrap_content"
@@ -90,29 +92,39 @@
         android:text="@string/empty_text"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textSize="24sp" />
+        
+       -->
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/resView3"
-        android:layout_alignLeft="@+id/resView3"
-        android:text="TextView" />
+        android:layout_alignBaseline="@+id/textView2"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_alignRight="@+id/button1"
+        android:layout_marginRight="23dp"
+        android:text="@string/counter_text"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/resView4"
-        android:layout_alignLeft="@+id/resView4"
-        android:text="TextView" />
+        android:layout_above="@+id/textView4"
+        android:layout_alignLeft="@+id/textView5"
+        android:text="@string/counter_text"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/resView4"
-        android:layout_below="@+id/resView4"
-        android:text="TextView" />
+        android:layout_alignBottom="@+id/textView4"
+        android:layout_alignLeft="@+id/textView6"
+        android:text="@string/counter_text"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="24sp" />
 
 </RelativeLayout>

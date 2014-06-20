@@ -25,9 +25,7 @@ public class ReadActivity extends Activity {
 	final static String EXTRA_ROLL = "roll";
 	final static String EXTRA_PITCH = "pitch";
 	final static String EXTRA_YAW = "yaw";
-	private EditText rollText;
-	private EditText pitchText;
-	private EditText yawText;
+	// x, y, z dienten zur wiedergabe der sensor werte
 	private TextView x;
 	private TextView y;
 	private TextView z;
@@ -93,9 +91,9 @@ public class ReadActivity extends Activity {
 		public void onSensorChanged(SensorEvent event) {
 			
 		    //Definiere TextFelder
-		   	x = (TextView) findViewById(R.id.resView2);
-		   	y = (TextView) findViewById(R.id.resView3);
-		    z = (TextView) findViewById(R.id.resView4);
+//		   	x = (TextView) findViewById(R.id.resView2);
+//		   	y = (TextView) findViewById(R.id.resView3);
+//		    z = (TextView) findViewById(R.id.resView4);
 		    
 		    rotationsX = (TextView) findViewById(R.id.textView5);
 		    rotationsY = (TextView) findViewById(R.id.textView6);
@@ -108,13 +106,13 @@ public class ReadActivity extends Activity {
 		    //aendere TextFelder
 		    
 		    // X Achsen Zähler
-		    if ((axisX > 0) && rotationConditionX == false){
+		    if ((axisX > 0 && axisX < 50) && rotationConditionX == false){
 		    	rotationConditionX = true;
 		    	
 		    }
-		    if ((axisX > 180) && rotationConditionX == true){
-		    	numberOfRotationsX += 1;
+		    if ((axisX > 180 ) && rotationConditionX == true){
 		    	rotationConditionX = false;
+		    	numberOfRotationsX += 1;
 		    
 		    }
 		    // Y Achsen Zähler
@@ -138,9 +136,9 @@ public class ReadActivity extends Activity {
 		    
 		    }
 		    
-		    x.setText("" + axisX);
-		    y.setText("" + axisY );
-		    z.setText("" + axisZ );
+//		    x.setText("" + axisX);
+//		    y.setText("" + axisY );
+//		    z.setText("" + axisZ );
 		    rotationsX.setText("" + numberOfRotationsX);
 		    rotationsY.setText("" + numberOfRotationsY);
 		    rotationsZ.setText("" + numberOfRotationsZ);
@@ -158,12 +156,12 @@ public class ReadActivity extends Activity {
 	//wechselt und übergibt werte zur result activity 
 	public void switchActivity() {
 		
-		String rollValue = x.getText().toString();
-		String pitchValue = y.getText().toString();
-		String yawValue = z.getText().toString();
+		String rollValue = rotationsX.getText().toString();
+		String pitchValue = rotationsY.getText().toString();
+		String yawValue = rotationsZ.getText().toString();
 		Intent intent = new Intent(this, ResultActivity.class);
-		intent.putExtra(EXTRA_PITCH, rollValue);
-		intent.putExtra(EXTRA_ROLL, pitchValue);
+		intent.putExtra(EXTRA_PITCH, pitchValue);
+		intent.putExtra(EXTRA_ROLL, rollValue);
 		intent.putExtra(EXTRA_YAW, yawValue);
 		startActivity(intent);
 	}
