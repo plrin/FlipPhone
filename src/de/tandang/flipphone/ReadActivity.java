@@ -100,7 +100,7 @@ public class ReadActivity extends Activity {
 		    rotationsY = (TextView) findViewById(R.id.textView6);
 		    rotationsZ = (TextView) findViewById(R.id.textView7);
 
-		    //Definiere variablen f�r Gyroskop Ausgabe
+		    //Definiere variablen f�r Orientation Ausgabe
 		    float axisX = event.values[0];
 		    float axisY = event.values[1];
 		    float axisZ = event.values[2];
@@ -111,7 +111,7 @@ public class ReadActivity extends Activity {
 		    	rotationConditionX = true;
 		    	
 		    }
-		    if ((axisX > 180 && axisX < 270) && rotationConditionX == true){
+		    if ((axisX > 270 && axisX < 360) && rotationConditionX == true){
 		    	rotationConditionX = false;
 		    	numberOfRotationsX += 1;
 		    	

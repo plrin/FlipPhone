@@ -8,7 +8,7 @@
     <string name="button_start">Start</string>
     <string name="button_stop">Stop</string>
     <string name="button_finish">Finish</string>
-    <string name="title_activity_read">Meassures</string>
+    <string name="title_activity_read">Measures</string>
     <string name="title_result">Result</string>
     <string name="text_roll">Roll</string>
     <string name="text_pitch">Pitch</string>
