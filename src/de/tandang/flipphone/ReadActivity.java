@@ -35,6 +35,9 @@ public class ReadActivity extends Activity {
 	private int numberOfRotationsX = 0;
 	private int numberOfRotationsY = 0;
 	private int numberOfRotationsZ = 0;
+	private boolean rotationConditionX = false;
+	private boolean rotationConditionY = false;
+	private boolean rotationConditionZ = false;
 	
 
 	@Override
@@ -57,14 +60,14 @@ public class ReadActivity extends Activity {
 		sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
 		if (sensor != null) {
 			sensorManager.registerListener(mySensorEventListener, sensor,
-		          SensorManager.SENSOR_DELAY_FASTEST);
-		      Log.i("Compass MainActivity", "Registerered for ORIENTATION Sensor");
-		    } else {
-		      Log.e("Compass MainActivity", "Registerered for ORIENTATION Sensor");
-		      Toast.makeText(this, "ORIENTATION Sensor not found",
-		          Toast.LENGTH_LONG).show();
-		      finish();
-		    }	
+		          SensorManager.SENSOR_DELAY_GAME);
+		      //Log.i("Compass MainActivity", "Registered for ORIENTATION Sensor");
+			} else {
+				//Log.e("Compass MainActivity", "Registered for ORIENTATION Sensor");
+				Toast.makeText(this, "ORIENTATION Sensor not found",
+		        Toast.LENGTH_LONG).show();
+				finish();
+			}	
 	}
 	
 	
@@ -76,9 +79,7 @@ public class ReadActivity extends Activity {
 		return true;
 	}
 	
-	boolean rotationConditionX = false;
-	boolean rotationConditionY = false;
-	boolean rotationConditionZ = false;
+
 	// sensor listener definieren
 	private SensorEventListener mySensorEventListener = new SensorEventListener() {
 		
@@ -99,38 +100,38 @@ public class ReadActivity extends Activity {
 		    rotationsY = (TextView) findViewById(R.id.textView6);
 		    rotationsZ = (TextView) findViewById(R.id.textView7);
 
-		    //Definiere variablen f�r Gyroskop Ausgabe
+		    //Definiere variablen f�r Orientation Ausgabe
 		    float axisX = event.values[0];
 		    float axisY = event.values[1];
 		    float axisZ = event.values[2];
 		    //aendere TextFelder
 		    
 		    // X Achsen Zähler
-		    if ((axisX > 0 && axisX < 50) && rotationConditionX == false){
+		    if ((axisX > 30 && axisX < 120) && rotationConditionX == false){
 		    	rotationConditionX = true;
 		    	
 		    }
-		    if ((axisX > 180 ) && rotationConditionX == true){
+		    if ((axisX > 270 && axisX < 360) && rotationConditionX == true){
 		    	rotationConditionX = false;
 		    	numberOfRotationsX += 1;
-		    
+		    	
 		    }
 		    // Y Achsen Zähler
-		    if ((axisY > 30) && rotationConditionY == false){
+		    if ((axisY > 30 && axisY < 120) && rotationConditionY == false){
 		    	rotationConditionY = true;
 		    	
 		    }
-		    if ((axisY > -180 && axisY < -30) && rotationConditionY == true){
+		    if ((axisY > -150 && axisY < -60) && rotationConditionY == true){
 		    	numberOfRotationsY += 1;
 		    	rotationConditionY = false;
 		    
 		    }
 		    // Z Achsen Zähler
-		    if ((axisZ > 30) && rotationConditionZ == false){
+		    if ((axisZ > 30 && axisZ < 120) && rotationConditionZ == false){
 		    	rotationConditionZ = true;
 		    	
 		    }
-		    if ((axisZ > -180 && axisZ < -30) && rotationConditionZ == true){
+		    if ((axisZ > -150 && axisZ < -60) && rotationConditionZ == true){
 		    	numberOfRotationsZ += 1;
 		    	rotationConditionZ = false;
 		    
@@ -166,8 +167,6 @@ public class ReadActivity extends Activity {
 		startActivity(intent);
 	}
 	
-	public void count() {
-		
-	}
+	
 
 }
